@@ -31,7 +31,10 @@ module.exports = {
         if(!customer_details)
         {
             let token = await common_service.jwt_Sign_token({id : "myself"});
-            let customer_data = await common_service.fetch_request("GET",token,url,null);
+            let req_payload = {
+                id : token_data.id
+            }
+            let customer_data = await common_service.fetch_request("GET",token,url,null,req_payload);
             if(customer_data.status === 200)
             {
                 customer_data = customer_data.json();

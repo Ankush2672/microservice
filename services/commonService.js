@@ -21,6 +21,7 @@ module.exports = {
       },
       fetch_request : async (method, auth, url, content_type, payload)=>{
         auth = "Bearer " + auth;
+        payload = JSON.stringify(payload);
 
         try {
             return await fetch(url, {
