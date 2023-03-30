@@ -5,6 +5,20 @@ module.exports = {
     addcustomer: async(req,h) =>{
         try{
 
+            let access_token = req.headers.authorization;
+            if(!access_token)
+            {
+                return h.response({message: "authorization header missisng"}).code(403);
+            }
+
+            let token_data = await common_service.jwt_verify_token(access_token);
+            
+
+            if(!token_data)
+            {
+                return h.response({message: "invalid crediantls"}).code(403);
+            }
+
         const customers = req.getDb(dbconfig.DB).getModel('customers');
 
         let check_user = await customers.findOne({

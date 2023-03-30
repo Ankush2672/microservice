@@ -18,5 +18,21 @@ module.exports = {
         origin: ['*'],
         additionalHeaders: ['cache-control', 'x-requested-with'],
         headers: ['Accept', 'Authorization', 'Content-Type', 'If-None-Match', 'refresh_token'],
-      }
+      },
+      fetch_request : async (method, auth, url, content_type, payload)=>{
+        auth = "Bearer " + auth;
+
+        try {
+            return await fetch(url, {
+              method: method,
+              headers: {
+                'Content-Type': content_type || 'application/json',
+                Authorization: auth || '',
+              },
+              body: payload,
+            });
+          } catch (error) {
+            return error;
+          }
+      },
 }

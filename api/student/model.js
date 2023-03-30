@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      class: {
+      roll_no: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      status: {
+      gender: {
         type: DataTypes.STRING,
         allowNull: false
       },
