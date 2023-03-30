@@ -26,6 +26,7 @@ module.exports = {
         let customer_details = await customers.findOne({where:{
             user_id : token_data.id
         }});
+        console.log(customer_details);
 
 
         if(!customer_details)
@@ -34,7 +35,8 @@ module.exports = {
             let req_payload = {
                 id : token_data.id
             }
-            let customer_data = await common_service.fetch_request("GET",token,url,null,req_payload);
+            let customer_data = await common_service.fetch_request("POST",token,url,null,req_payload);
+            console.log(customer_data);
             if(customer_data.status === 200)
             {
                 customer_data = customer_data.json();
