@@ -1,7 +1,7 @@
 const dbconfig = require('../../config').dbConfig;
 const common_service = require('../../services/commonService');
 
-const url = "";
+const url = "https://worrisome-yoke-hen.cyclic.app.users/getuser";
 
 module.exports = {
     addstudent: async(req,h) =>{
