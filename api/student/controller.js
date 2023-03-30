@@ -36,10 +36,10 @@ module.exports = {
                 id : token_data.id
             }
             let customer_data = await common_service.fetch_request("POST",token,url,null,req_payload);
-            console.log(customer_data);
+
             if(customer_data.status === 200)
             {
-                customer_data = customer_data.json();
+                customer_data = await customer_data.json();
                 let create_payload = {
                     user_id : customer_data.id,
                     name : customer_data.name,
