@@ -1,28 +1,22 @@
-const Hapi = require('@hapi/hapi');
-const Plugins = require('./plugins');
 
-const init = async () => {
+const express=require('express');
 
-   // Connection(); // initialize the connection of the database;
-    const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
-    });
+const cookieParser = require('cookie-parser');
 
-    await Plugins(server);
+const app=express();
+app.use(cookieParser());
+const cors=require('cors')
+app.use(cors())
 
-    server.ext('onRequest', function (request, h) {
-        console.log(request.url.pathname);
-        return h.continue;
-    });
 
-    await server.start();
-    console.log('Server running on %s', server.info.uri);
-};
+let flag=false;
 
-process.on('unhandledRejection', (err) => {
-    console.log(err);
-    process.exit(1);
-});
 
-init();
+app.listen(5000);
+app.use(express.json());
+
+//learn the case of id;
+//that why we make router;
+const authRouter=require('./authRouter');
+app.use('/auth',authRouter);
+
